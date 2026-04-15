@@ -9,7 +9,7 @@ function Header() {
         Fast React Pizza Co.
       </Link>
       <SerachOrder />
-      {/* <Username  /> */}
+      <Username />
     </header>
   );
 }

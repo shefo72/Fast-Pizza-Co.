@@ -1,5 +1,5 @@
 import { useRouteError } from "react-router-dom";
-import Button from "./Button";
+import LinkButton from "./LinkButton";
 
 function NotFound() {
   const error = useRouteError();
@@ -19,7 +19,7 @@ function NotFound() {
 
         <div className="mb-6 h-0.5 w-full bg-amber-200"></div>
 
-        <Button to="-1">&larr; Go back</Button>
+        <LinkButton to="-1">&larr; Go back</LinkButton>
       </div>
     </div>
   );
