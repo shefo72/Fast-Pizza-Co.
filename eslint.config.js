@@ -18,6 +18,7 @@ export default defineConfig([
       "react/no-unescaped-entities": "off",
       "react/prop-types": "off",
       "no-unused-vars": "warn",
+      "import/no-unresolved": ["error", { caseSensitive: true }],
     },
   },
 ]);
