@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import SerachOrder from "../features/order/SerachOrder";
-import Username from "../features/user/UserName";
+import UserName from "../features/user/UserName";
 
 function Header() {
   return (
@@ -9,7 +9,7 @@ function Header() {
         Fast React Pizza Co.
       </Link>
       <SerachOrder />
-      <Username />
+      <UserName />
     </header>
   );
 }
