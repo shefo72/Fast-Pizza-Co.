@@ -116,7 +116,7 @@ function CreateOrder() {
           <input type="hidden" name="cart" value={JSON.stringify(cart)} />
           <input
             type="hidden"
-            name="address"
+            name="position"
             value={
               position.latitude
                 ? `${position.latitude} , ${position.longitude}`
