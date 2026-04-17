@@ -4,7 +4,7 @@ import { useState } from "react";
 
 import store from "./../../store";
 import { createOrder } from "../../services/apiRestaurant";
-import { clearCart, getCart, getTotalCartPrice } from "../cart/CartSlice";
+import { clearCart, getCart, getTotalCartPrice } from "../cart/cartSlice";
 import { fetchAddress } from "../user/userSlice";
 import { formatCurrency } from "./../../utils/helpers";
 

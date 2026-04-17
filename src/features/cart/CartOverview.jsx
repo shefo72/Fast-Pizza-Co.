@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
-import { getTotalCartQuantity, getTotalCartPrice } from "./CartSlice";
+import { getTotalCartQuantity, getTotalCartPrice } from "./cartSlice";
 
 function CartOverview() {
   const totalCartQuantity = useSelector(getTotalCartQuantity);
