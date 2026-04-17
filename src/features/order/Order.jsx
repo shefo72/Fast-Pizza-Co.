@@ -1,6 +1,8 @@
 // Test ID: IIDSAT
 
-import { useLoaderData } from "react-router-dom";
+import { useFetcher, useLoaderData } from "react-router-dom";
+import { useEffect } from "react";
+
 import { getOrder } from "../../services/apiRestaurant";
 import OrderItem from "./OrderItem";
 import {
@@ -8,8 +10,11 @@ import {
   formatCurrency,
   formatDate,
 } from "../../utils/helpers";
+import UpdateOrder from "./UpdateOrder";
 
 function Order() {
+  const order = useLoaderData();
+
   const {
     status,
     priority,
@@ -18,7 +23,16 @@ function Order() {
     id,
     estimatedDelivery,
     cart,
-  } = useLoaderData();
+  } = order;
+
+  // fetcher is a special hook that allows us to load data imperatively, without navigating to a new route.
+  // In this case, we use it to fetch the menu data so that we can display the ingredients for each pizza in the order.
+  // without moveing to menu page
+  const fetcher = useFetcher();
+
+  useEffect(() => {
+    if (!fetcher.data && fetcher.state === "idle") fetcher.load("/menu");
+  }, [fetcher]);
 
   const deliveryIn = calcMinutesLeft(estimatedDelivery);
   return (
@@ -50,7 +64,15 @@ function Order() {
 
       <ul className="divide-y divide-stone-200">
         {cart.map((item) => (
-          <OrderItem item={item} key={item.pizzaId} />
+          <OrderItem
+            item={item}
+            key={item.pizzaId}
+            ingredients={
+              fetcher.data?.find((el) => el.id === item.pizzaId).ingredients ??
+              []
+            }
+            isLoadingIngredients={fetcher.state === "loading"}
+          />
         ))}
       </ul>
 
@@ -67,6 +89,7 @@ function Order() {
           To pay on delivery: {formatCurrency(orderPrice + priorityPrice)}
         </p>
       </div>
+      {!priority && <UpdateOrder />}
     </div>
   );
 }
